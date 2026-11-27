@@ -1,0 +1,13 @@
+# Netlify configuration for MobiGear (Next.js App Router)
+# Docs: https://docs.netlify.com/frameworks/next-js/overview/
+
+[build]
+  command   = "npm run build"
+  publish   = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Use Netlify's Next.js runtime (handles SSR, Server Actions, middleware)
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

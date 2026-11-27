@@ -4,11 +4,12 @@
 // =============================================================================
 
 import type { Metadata } from "next";
+import Image from "next/image";
 import LoginForm from "@/components/admin/LoginForm";
 import "@/app/admin/admin.css";
 
 export const metadata: Metadata = {
-  title: "Sign In — MobiGear Admin",
+  title: "Sign In — VIEW STORE Admin",
   robots: { index: false, follow: false },
 };
 
@@ -22,8 +23,15 @@ export default function LoginPage({
     <div className="admin-login-page">
       <div className="admin-login-card">
         <div className="admin-login-brand">
-          <span className="admin-login-logo">📦</span>
-          <h1 className="admin-login-title">MobiGear</h1>
+          <Image
+            src="/logo.png"
+            alt="VIEW STORE"
+            width={180}
+            height={50}
+            style={{ objectFit: "contain", margin: "0 auto 12px", height: "50px", width: "auto" }}
+            priority
+          />
+          <h1 className="admin-login-title">VIEW STORE</h1>
           <p className="admin-login-sub">Store Owner Portal</p>
         </div>
         <LoginForm />

@@ -1,13 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 interface NavbarProps {
   storeName?: string;
+  logoUrl?: string | null;
 }
 
-export default function Navbar({ storeName = "VIEW STORE" }: NavbarProps) {
+export default function Navbar({ storeName = "VIEW STORE", logoUrl }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -15,7 +17,14 @@ export default function Navbar({ storeName = "VIEW STORE" }: NavbarProps) {
       <div className="navbar-inner container">
         {/* Logo */}
         <Link href="/" className="navbar-logo" aria-label={`${storeName} Home`}>
-          <span className="logo-icon" aria-hidden="true">📡</span>
+          <Image
+            src={logoUrl || "/logo.png"}
+            alt={storeName}
+            width={180}
+            height={50}
+            priority
+            style={{ objectFit: "contain", height: "50px", width: "auto" }}
+          />
           <span className="logo-text">{storeName}</span>
         </Link>
 

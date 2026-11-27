@@ -1,10 +1,14 @@
+import Image from "next/image";
+
 interface FooterProps {
   storeName?: string;
+  logoUrl?: string | null;
   whatsappNumber?: string | null;
 }
 
 export default function Footer({
   storeName = "VIEW STORE",
+  logoUrl,
   whatsappNumber,
 }: FooterProps) {
   const year = new Date().getFullYear();
@@ -17,8 +21,15 @@ export default function Footer({
         <div className="footer-grid">
           {/* Brand column */}
           <div className="footer-brand">
-            <div className="footer-logo">
-              <span aria-hidden="true">📡</span> {storeName}
+            <div className="footer-logo" style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
+              <Image
+                src={logoUrl || "/logo.png"}
+                alt={storeName}
+                width={190}
+                height={54}
+                style={{ objectFit: "contain", height: "54px", width: "auto" }}
+              />
+              <span className="logo-text" style={{ fontSize: "1.35rem", fontWeight: 800 }}>{storeName}</span>
             </div>
             <p className="footer-tagline">
               Premium mobile accessories and electronics delivered to your door.

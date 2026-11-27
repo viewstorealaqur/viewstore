@@ -70,10 +70,14 @@ WHERE p.category_id IS NULL;
 -- Enforce NOT NULL after populating existing rows
 ALTER TABLE public.products ALTER COLUMN category_id SET NOT NULL;
 
+-- Make legacy category enum column nullable so new product inserts using category_id succeed
+ALTER TABLE public.products ALTER COLUMN category DROP NOT NULL;
+
 -- Create index on products.category_id
 CREATE INDEX IF NOT EXISTS products_category_id_idx ON public.products (category_id) WHERE published = true;
 
 COMMENT ON COLUMN public.products.category_id IS 'Foreign key referencing public.categories(id). Restricted from deletion while products exist.';
+COMMENT ON COLUMN public.products.category IS 'Legacy category enum. Retained for historical data preservation; category_id foreign key is now used.';
 
 -- ─── Grants ───────────────────────────────────────────────────────────────────
 REVOKE ALL ON TABLE public.categories FROM anon, authenticated;

@@ -8,6 +8,8 @@ import { usePathname } from "next/navigation";
 import { useTransition } from "react";
 import { logoutAction } from "@/app/admin/actions/auth";
 
+import Image from "next/image";
+
 interface AdminNavProps {
   userEmail: string;
 }
@@ -32,8 +34,15 @@ export default function AdminNav({ userEmail }: AdminNavProps) {
 
   return (
     <nav className="admin-nav" aria-label="Admin navigation">
-      <div className="admin-nav-brand">
-        <span className="admin-nav-brand-icon">📦</span>
+      <div className="admin-nav-brand" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <Image
+          src="/logo.png"
+          alt="VIEW STORE"
+          width={150}
+          height={40}
+          style={{ objectFit: "contain", height: "40px", width: "auto" }}
+          priority
+        />
         <span className="admin-nav-brand-name">VIEW STORE Admin</span>
       </div>
 

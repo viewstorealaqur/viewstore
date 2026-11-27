@@ -61,6 +61,8 @@ export interface StoreSettingsRow {
   store_name: string;
   /** E.164 digits only, no leading "+". Null means WA button is disabled. */
   whatsapp_number: string | null;
+  /** Custom logo image public URL. Null defaults to public/logo.png */
+  logo_url?: string | null;
   updated_at: string;
 }
 
@@ -91,7 +93,7 @@ export type ProductImageInsert = Pick<
 };
 
 export type StoreSettingsUpdate = Partial<
-  Pick<StoreSettingsRow, "store_name" | "whatsapp_number">
+  Pick<StoreSettingsRow, "store_name" | "whatsapp_number" | "logo_url">
 >;
 
 export type Json =
