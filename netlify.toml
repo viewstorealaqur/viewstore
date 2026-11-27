@@ -6,7 +6,11 @@
   publish   = ".next"
 
 [build.environment]
-  NODE_VERSION = "20"
+  # Use Node 22 (Node 20 deprecated by supabase-js)
+  NODE_VERSION = "22"
+  # OWNER_USER_ID is a Supabase Auth UUID (a row reference, not a password).
+  # Netlify's scanner finds it in the Turbopack cache; this key is safe to omit.
+  SECRETS_SCAN_OMIT_KEYS = "OWNER_USER_ID"
 
 # Use Netlify's Next.js runtime (handles SSR, Server Actions, middleware)
 [[plugins]]
